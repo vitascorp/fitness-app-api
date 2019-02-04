@@ -3,3 +3,8 @@
 ################################################################################
 
 /.vs
+/FitnessApp.Api/bin
+/FitnessApp.Api/obj
+/FitnessApp.Api/Properties/PublishProfiles
+/FitnessApp.Data/bin
+/FitnessApp.Data/obj

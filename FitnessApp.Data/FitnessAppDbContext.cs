@@ -11,5 +11,6 @@ namespace FitnessApp.Data
         }
 
         public DbSet<ExerciseCategory> ExerciseCategories { get; set; }
+        public DbSet<Exercise> Exercises { get; set; }
     }
 }

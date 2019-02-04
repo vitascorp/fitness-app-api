@@ -1,8 +1,10 @@
-﻿namespace FitnessApp.Api.Models
+﻿namespace FitnessApp.Data.Models
 {
-    public class ExerciseCategory
+    public class Exercise
     {
         public int? Id { get; set; }
+
+        public int CategoryId { get; set; }
 
         public string Name { get; set; }
 

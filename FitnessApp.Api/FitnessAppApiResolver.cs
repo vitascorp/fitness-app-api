@@ -8,6 +8,7 @@ namespace FitnessApp.Api
         public void Resolve(IServiceCollection services)
         {
             services.AddTransient<IExerciseCategoriesService, ExerciseCategoriesService>();
+            services.AddTransient<IExercisesService, ExercisesService>();
         }
     }
 }

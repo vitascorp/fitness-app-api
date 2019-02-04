@@ -20,5 +20,24 @@ namespace FitnessApp.Api.Services
             var categories = await _exerciseCategoriesRepository.GetExerciseCategories();
             return categories.Select(category => new ExerciseCategory { Id = category.Id, Name = category.Name });
         }
+
+        public async Task<ExerciseCategory> GetExerciseCategory(int categoryId)
+        {
+            var category = await _exerciseCategoriesRepository.GetExerciseCategory(categoryId);
+            return new ExerciseCategory { Id = category.Id, Name = category.Name };
+        }
+
+        public async Task<ExerciseCategory> SaveExerciseCategory(ExerciseCategory category)
+        {
+            var entity = new Data.Models.ExerciseCategory { Id = category.Id, Name = category.Name };
+            entity = await _exerciseCategoriesRepository.SaveExerciseCategory(entity);
+
+            return new ExerciseCategory { Id = category.Id, Name = category.Name };
+        }
+
+        public async Task DeleteExerciseCategory(int categoryId)
+        {
+            await _exerciseCategoriesRepository.DeleteExerciseCategory(categoryId);
+        }
     }
 }

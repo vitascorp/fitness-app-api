@@ -9,6 +9,7 @@ namespace FitnessApp.Api
         {
             services.AddTransient<IConnectionStringProvider, ConnectionStringProvider>();
             services.AddTransient<IExerciseCategoriesRepository, ExerciseCategoriesRepository>();
+            services.AddTransient<IExercisesRepository, ExercisesRepository>();
         }
     }
 }

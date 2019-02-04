@@ -6,13 +6,13 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace FitnessApp.Api.Controllers
 {
-    [Route("api/exercise-categories")]
+    [Route("api/categories")]
     [ApiController]
-    public class ExerciseCategoriesController : ControllerBase
+    public class CategoriesController : ControllerBase
     {
         private readonly IExerciseCategoriesService _exerciseCategoriesService;
 
-        public ExerciseCategoriesController(IExerciseCategoriesService exerciseCategoriesService)
+        public CategoriesController(IExerciseCategoriesService exerciseCategoriesService)
         {
             _exerciseCategoriesService = exerciseCategoriesService;
         }
@@ -29,27 +29,30 @@ namespace FitnessApp.Api.Controllers
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
+        public ActionResult<ExerciseCategory> Get(int id)
         {
-            return "value";
+            var task = _exerciseCategoriesService.GetExerciseCategory(id);
+            task.Wait();
+
+            return task.Result;
         }
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody] string value)
+        public ActionResult<ExerciseCategory> Post([FromBody] ExerciseCategory category)
         {
-        }
+            var task = _exerciseCategoriesService.SaveExerciseCategory(category);
+            task.Wait();
 
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
+            return task.Result;
         }
 
         // DELETE api/values/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            var task = _exerciseCategoriesService.DeleteExerciseCategory(id);
+            task.Wait();
         }
     }
 }

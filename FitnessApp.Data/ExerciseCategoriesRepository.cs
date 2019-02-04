@@ -18,5 +18,30 @@ namespace FitnessApp.Data
         {
             return await _context.ExerciseCategories.ToArrayAsync();
         }
+
+        public async Task<ExerciseCategory> GetExerciseCategory(int categoryId)
+        {
+            return await _context.ExerciseCategories.FirstOrDefaultAsync(c => c.Id == categoryId);
+        }
+
+        public async Task<ExerciseCategory> SaveExerciseCategory(ExerciseCategory category)
+        {
+            if (!category.Id.HasValue)
+                _context.ExerciseCategories.Add(category);
+            else
+                _context.ExerciseCategories.Update(category);
+
+            await _context.SaveChangesAsync();
+
+            return category;            
+        }
+
+        public async Task DeleteExerciseCategory(int categoryId)
+        {
+            var category = await _context.ExerciseCategories.FirstOrDefaultAsync(c => c.Id == categoryId);
+            _context.Remove(category);
+
+            await _context.SaveChangesAsync();
+        }
     }
 }

@@ -4,14 +4,16 @@ using FitnessApp.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FitnessApp.Data.Migrations
 {
     [DbContext(typeof(FitnessAppDbContext))]
-    partial class FitnessAppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190922140341_add weight and cardio db structure")]
+    partial class addweightandcardiodbstructure
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -101,18 +103,17 @@ namespace FitnessApp.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<decimal>("Angle");
+                    b.Property<decimal>("CardioAngle");
 
-                    b.Property<decimal>("Speed");
+                    b.Property<decimal>("CardioSpeed");
 
-                    b.Property<decimal>("Time");
+                    b.Property<decimal>("CardioTime");
 
                     b.Property<int>("TrainingId");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("TrainingId")
-                        .IsUnique();
+                    b.HasIndex("TrainingId");
 
                     b.ToTable("TrainingCardios");
                 });
@@ -203,8 +204,8 @@ namespace FitnessApp.Data.Migrations
             modelBuilder.Entity("FitnessApp.Data.Models.TrainingCardio", b =>
                 {
                     b.HasOne("FitnessApp.Data.Models.Training", "Training")
-                        .WithOne("Cardio")
-                        .HasForeignKey("FitnessApp.Data.Models.TrainingCardio", "TrainingId")
+                        .WithMany()
+                        .HasForeignKey("TrainingId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

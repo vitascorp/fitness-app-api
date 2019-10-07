@@ -18,21 +18,21 @@ namespace FitnessApp.Api.Services
         public async Task<IEnumerable<ExerciseCategory>> GetExerciseCategories()
         {
             var categories = await _exerciseCategoriesRepository.GetExerciseCategories();
-            return categories.Select(category => new ExerciseCategory { Id = category.Id, Name = category.Name });
+            return categories.Select(category => new ExerciseCategory { Id = category.Id, Name = category.Name, Order = category.Order });
         }
 
         public async Task<ExerciseCategory> GetExerciseCategory(int categoryId)
         {
             var category = await _exerciseCategoriesRepository.GetExerciseCategory(categoryId);
-            return new ExerciseCategory { Id = category.Id, Name = category.Name };
+            return new ExerciseCategory { Id = category.Id, Name = category.Name, Order = category.Order };
         }
 
         public async Task<ExerciseCategory> SaveExerciseCategory(ExerciseCategory category)
         {
-            var entity = new Data.Models.ExerciseCategory { Id = category.Id, Name = category.Name };
+            var entity = new Data.Models.Category { Id = category.Id, Name = category.Name, Order = category.Order };
             entity = await _exerciseCategoriesRepository.SaveExerciseCategory(entity);
 
-            return new ExerciseCategory { Id = category.Id, Name = category.Name };
+            return new ExerciseCategory { Id = category.Id, Name = category.Name, Order = category.Order };
         }
 
         public async Task DeleteExerciseCategory(int categoryId)

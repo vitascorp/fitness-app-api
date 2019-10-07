@@ -6,11 +6,11 @@ namespace FitnessApp.Data
 {
     public interface IExerciseCategoriesRepository
     {
-        Task<IEnumerable<ExerciseCategory>> GetExerciseCategories();
+        Task<IEnumerable<Category>> GetExerciseCategories();
 
-        Task<ExerciseCategory> GetExerciseCategory(int categoryId);
+        Task<Category> GetExerciseCategory(int categoryId);
 
-        Task<ExerciseCategory> SaveExerciseCategory(ExerciseCategory category);
+        Task<Category> SaveExerciseCategory(Category category);
 
         Task DeleteExerciseCategory(int categoryId);
     }

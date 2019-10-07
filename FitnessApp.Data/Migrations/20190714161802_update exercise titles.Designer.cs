@@ -4,18 +4,20 @@ using FitnessApp.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FitnessApp.Data.Migrations
 {
     [DbContext(typeof(FitnessAppDbContext))]
-    partial class FitnessAppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190714161802_update exercise titles")]
+    partial class updateexercisetitles
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.2.6-servicing-10079")
+                .HasAnnotation("ProductVersion", "2.1.4-rtm-31024")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -86,35 +88,11 @@ namespace FitnessApp.Data.Migrations
 
                     b.Property<DateTime>("Date");
 
-                    b.Property<decimal>("Weight");
-
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
 
                     b.ToTable("Trainings");
-                });
-
-            modelBuilder.Entity("FitnessApp.Data.Models.TrainingCardio", b =>
-                {
-                    b.Property<int?>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<decimal>("Angle");
-
-                    b.Property<decimal>("Speed");
-
-                    b.Property<decimal>("Time");
-
-                    b.Property<int>("TrainingId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("TrainingId")
-                        .IsUnique();
-
-                    b.ToTable("TrainingCardios");
                 });
 
             modelBuilder.Entity("FitnessApp.Data.Models.TrainingExercise", b =>
@@ -197,14 +175,6 @@ namespace FitnessApp.Data.Migrations
                     b.HasOne("FitnessApp.Data.Models.Category", "Category")
                         .WithMany()
                         .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("FitnessApp.Data.Models.TrainingCardio", b =>
-                {
-                    b.HasOne("FitnessApp.Data.Models.Training", "Training")
-                        .WithOne("Cardio")
-                        .HasForeignKey("FitnessApp.Data.Models.TrainingCardio", "TrainingId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

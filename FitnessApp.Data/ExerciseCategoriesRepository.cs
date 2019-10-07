@@ -14,22 +14,22 @@ namespace FitnessApp.Data
             _context = context;
         }
 
-        public async Task<IEnumerable<ExerciseCategory>> GetExerciseCategories()
+        public async Task<IEnumerable<Category>> GetExerciseCategories()
         {
-            return await _context.ExerciseCategories.ToArrayAsync();
+            return await _context.Categories.ToArrayAsync();
         }
 
-        public async Task<ExerciseCategory> GetExerciseCategory(int categoryId)
+        public async Task<Category> GetExerciseCategory(int categoryId)
         {
-            return await _context.ExerciseCategories.FirstOrDefaultAsync(c => c.Id == categoryId);
+            return await _context.Categories.FirstOrDefaultAsync(c => c.Id == categoryId);
         }
 
-        public async Task<ExerciseCategory> SaveExerciseCategory(ExerciseCategory category)
+        public async Task<Category> SaveExerciseCategory(Category category)
         {
             if (!category.Id.HasValue)
-                _context.ExerciseCategories.Add(category);
+                _context.Categories.Add(category);
             else
-                _context.ExerciseCategories.Update(category);
+                _context.Categories.Update(category);
 
             await _context.SaveChangesAsync();
 
@@ -38,7 +38,7 @@ namespace FitnessApp.Data
 
         public async Task DeleteExerciseCategory(int categoryId)
         {
-            var category = await _context.ExerciseCategories.FirstOrDefaultAsync(c => c.Id == categoryId);
+            var category = await _context.Categories.FirstOrDefaultAsync(c => c.Id == categoryId);
             _context.Remove(category);
 
             await _context.SaveChangesAsync();

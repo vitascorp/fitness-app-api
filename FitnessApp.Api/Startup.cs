@@ -21,13 +21,14 @@ namespace FitnessApp.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors();
+
             services.AddDbContext<FitnessAppDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("FitnessAppDb")), ServiceLifetime.Transient);
 
             new FitnessAppApiResolver().Resolve(services);
             new FitnessAppDataResolver().Resolve(services);
 
-            services.AddCors();
             services.AddAutoMapper(typeof(Startup));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
@@ -35,6 +36,7 @@ namespace FitnessApp.Api
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            app.UseCors(options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -44,12 +46,7 @@ namespace FitnessApp.Api
                 app.UseHsts();
             }
 
-            app.UseCors(
-                options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()
-            );
-
             app.UseHttpsRedirection();
-            app.UseMvc();
         }
     }
 }

@@ -14,7 +14,7 @@ namespace FitnessApp.Data.Models
         public TrainingExercise TrainingExercise { get; set; }
 
         [Range(0, 1000)]
-        public ushort Weight { get; set; }
+        public decimal Weight { get; set; }
 
         [Range(0, 1000)]
         public ushort Amount { get; set; }

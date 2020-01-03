@@ -4,7 +4,7 @@
     {
         public int? Id { get; set; }
 
-        public ushort Weight { get; set; } 
+        public decimal Weight { get; set; } 
 
         public ushort Amount { get; set; }
 

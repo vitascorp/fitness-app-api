@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
     <UserSecretsId>3ea68924-0781-48ef-9dd4-78a7aa444fe3</UserSecretsId>
+    <ApplicationInsightsResourceId>/subscriptions/b4d98fe4-321e-4131-8988-15797fd4e7fc/resourcegroups/fitness-application-group/providers/microsoft.insights/components/fitness-app-api</ApplicationInsightsResourceId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -11,12 +12,17 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\FitnessApp.Data\FitnessApp.Data.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services" />
   </ItemGroup>
 
 </Project>
